@@ -1,0 +1,68 @@
+/* here you can put your own css to customize and override the theme */
+phanso {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 12px;
+}
+
+tuso {
+    border-bottom: 1px solid black;
+}
+
+mauso {
+    vertical-align: -20px;
+}
+
+phanso > tuso, phanso > mauso {
+    display: block;
+    padding: 0px 4px;
+}
+
+heso {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+}
+
+mu {
+    vertical-align: 15px;
+    font-size: 12px;
+}
+
+chan {
+    vertical-align: -15px;
+    font-size: 12px;
+}
+
+heso > mu, heso > chan {
+    display: block;
+    padding: 0px 4px;
+}
+
+can {
+    border-top: 1px solid black;
+    margin-left: -2px;
+    margin-top: -3px;
+    vertical-align: -2px;
+    padding: 4px;
+}
+
+.flip {
+    padding: 5px;
+    text-align: center;
+    background-color: #37a4d9;
+    border: solid 1px #c3c3c3;
+    color: white;
+}
+
+.panela {
+    padding: 5px;
+    background-color: #f8f8f8;
+    border: solid 1px #c3c3c3;
+}
+
+.panela {
+    padding: 50px;
+    display: none;
+}

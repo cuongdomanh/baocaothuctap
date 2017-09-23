@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+    <button id="toggle">play/pause</button>
+
+    <script>
+        var url = 'http://musical.dev/uploads/ringtones/7d2569359727f8eb9414cee4f2d16e43.mp3';
+        var ctx = new webkitAudioContext();
+        var buffer;
+        var sourceNode;
+
+        var startedAt;
+        var pausedAt;
+        var paused;
+
+        function load(url) {
+            var request = new XMLHttpRequest();
+            request.open('GET', url, true);
+            request.responseType = 'arraybuffer';
+            request.onload = function() {
+                ctx.decodeAudioData(request.response, onBufferLoad, onBufferError);
+            };
+            request.send();
+        };
+
+        function play() {
+            sourceNode = ctx.createBufferSource();
+            sourceNode.connect(ctx.destination);
+            sourceNode.buffer = buffer;
+            paused = false;
+
+            if (pausedAt) {
+                startedAt = Date.now() - pausedAt;
+                sourceNode.start(0, pausedAt / 1000);
+            }
+            else {
+                startedAt = Date.now();
+                sourceNode.start(0);
+            }
+        };
+
+        function stop() {
+            sourceNode.stop(0);
+            pausedAt = Date.now() - startedAt;
+            paused = true;
+        };
+
+        function onBufferLoad(b) {
+            buffer = b;
+            play();
+        };
+
+        function onBufferError(e) {
+            console.log('onBufferError', e);
+        };
+
+        document.getElementById("toggle").onclick = function() {
+            if (paused) play();
+            else stop();
+        };
+
+        load(url);
+    </script>
+</body>
+</html>
